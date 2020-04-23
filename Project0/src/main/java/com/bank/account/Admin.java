@@ -1,5 +1,5 @@
 package com.bank.account;
 
-public class Admin {
+public class Admin extends Employee{
 
 }
