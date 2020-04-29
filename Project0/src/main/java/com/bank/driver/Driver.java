@@ -1,17 +1,51 @@
 package com.bank.driver;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
 
 public class Driver {
 
 	public static void main(String[] args) {
+		
+		ArrayList accountType = new ArrayList(); //create 3 column table of infinite length (arrayList)
+		ArrayList userObject = new ArrayList();
+		ArrayList accountObject = new ArrayList();
+		
+		File accountTypeFile = new File("AccountTypeFile.txt");
+		File userFile = new File("UserFile.txt");
+		File accountFile = new File("AccountFile.txt");
+		
+		Scanner accountTypeReader = new Scanner(accountTypeFile);
+		FileInputStream userReader = new FileInputStream(userFile);
+		ObjectInputStream userObjects = new ObjectInputStream(userReader);
+		FileInputStream accountReader = new FileInputStream(accountFile);
+		ObjectInputStream accountObjects = new ObjectInputStream(accountReader);
+		
+		while (accountTypeReader.hasNext()) { //Read in account types to table
+			accountType.add(accountTypeReader.next());
+		}		
+		
+		while (userObjects.available() !=0) { //Read in user account objects to table
+			userObject.add(userObjects.readObject());
+		}
+		
+		while (accountObjects.available() != 0) {
+			userObject.add(accountObjects.readObject());
+		}
+		
+		//closing readers
+		userReader.close();
+		userObjects.close();
+		accountReader.close();
+		accountObjects.close();
+		
 		Scanner userIn = new Scanner(System.in);
 		String input = null;
 		boolean doneRight = false;
-		File username = new File("Username.txt");
-		File password = new File("Password.txt");
 
 		System.out.println("Welcome to the bank!");
 		while (!doneRight) { // While the user hasn't given a correct input, ask them for a good input
