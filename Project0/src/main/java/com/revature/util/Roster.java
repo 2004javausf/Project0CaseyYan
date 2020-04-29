@@ -9,7 +9,6 @@ public class Roster {
 	
 	public static List<Customer> customerList = new ArrayList<Customer>();
 	
-	@SuppressWarnings("unlikely-arg-type")
 	public static Customer findCustomerById(String inputId) {
 		for(int i=0; i<customerList.size(); i++) {
 			String id = customerList.get(i).getId();
