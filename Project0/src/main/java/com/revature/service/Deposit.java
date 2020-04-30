@@ -2,7 +2,7 @@ package com.revature.service;
 
 import java.util.Scanner;
 
-import com.revature.beans.Customer;
+import com.revature.beans.User;
 import com.revature.util.FileStuff;
 import com.revature.util.Roster;
 
@@ -10,7 +10,7 @@ public class Deposit {
 	
 	private static int input1;
 	
-	public static void depo(Customer a) {
+	public static void depo(User a) {
 		//a is going to deposit
 		System.out.println("Please input your deposite amount: ");
 		Scanner sc = new Scanner(System.in);

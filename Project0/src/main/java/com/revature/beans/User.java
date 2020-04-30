@@ -2,7 +2,7 @@ package com.revature.beans;
 
 import java.io.Serializable;
 
-public class Customer implements Serializable {
+public class User implements Serializable {
 	
 	/**
 	 * 
@@ -12,12 +12,12 @@ public class Customer implements Serializable {
 	private String username;
 	private String password;
 	
-	public Customer() {
+	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Customer(String name, String username, String password) {
+	public User(String name, String username, String password) {
 		super();
 		this.name = name;
 		this.username = username;

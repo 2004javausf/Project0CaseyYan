@@ -2,7 +2,7 @@ package com.revature.menu;
 
 import java.util.Scanner;
 
-import com.revature.beans.Customer;
+import com.revature.beans.User;
 import com.revature.service.Deposit;
 import com.revature.service.Transaction;
 import com.revature.service.Withdraw;
@@ -49,7 +49,7 @@ public class Menu {
 		String customerId = scan.nextLine();
 		System.out.println("Please enter your first Deposit: ");
 		int customerBalance = Integer.parseInt(scan.nextLine());
-		new Customer(customerName,customerId,customerBalance);
+		new User(customerName,customerId,customerBalance);
 		System.out.println(Roster.customerList.toString());
 		
 		System.out.println("Would you like to make a new Account? (y/n)");
@@ -68,7 +68,7 @@ public class Menu {
 		//==============================
 		System.out.println("Enter your login in ID: ");
 		String first = scan.nextLine();
-		Customer a= Roster.findCustomerById(first);
+		User a= Roster.findCustomerById(first);
 		
 		
 		char option = '\0';
@@ -125,7 +125,7 @@ public class Menu {
 			case '4':
 				System.out.println("Enter the ID of you transfer to: ");
 				String second = scan.nextLine();
-				Customer b = Roster.findCustomerById(second);
+				User b = Roster.findCustomerById(second);
 				System.out.println("Find the correct Customer ID!");
 				Transaction.trans(a, b);
 				Transaction t = new Transaction();
