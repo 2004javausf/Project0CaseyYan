@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import com.revature.beans.Customer;
+import com.revature.beans.User;
 import com.revature.service.Deposit;
 
 class TestDeposit {
 	
-	Customer a = new Customer("ABCD12345", "Mikey", 200);
+	User a = new User("ABCD12345", "Mikey", 200);
 	Deposit deposit = new Deposit();
 
 	@Test

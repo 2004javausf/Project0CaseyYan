@@ -9,14 +9,14 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.revature.beans.Customer;
+import com.revature.beans.User;
 
 public class FileStuff {
 	public static final String customerFile= "customerList.txt";
 	//write method
-	public static List<Customer> customerList = new ArrayList<Customer>();
+	public static List<User> customerList = new ArrayList<User>();
 
-	public static void writeCustomerFile(List<Customer> a) {
+	public static void writeCustomerFile(List<User> a) {
 		try {
 			ObjectOutputStream objectOut = new ObjectOutputStream (new FileOutputStream(customerFile));
 			objectOut.writeObject(a);
@@ -36,7 +36,7 @@ public class FileStuff {
 	public static void readCustomerFile() {
 		try {
 			ObjectInputStream objectIn = new ObjectInputStream(new FileInputStream(customerFile));
-			Roster.customerList = (ArrayList<Customer>) objectIn.readObject();
+			Roster.customerList = (ArrayList<User>) objectIn.readObject();
 			objectIn.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block

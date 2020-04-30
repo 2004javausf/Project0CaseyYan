@@ -1,24 +1,27 @@
-package com.bank.account;
+package com.revature.beans;
 
-public class Customer {
+import java.io.Serializable;
 
+public class User implements Serializable {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5468406550368728941L;
 	private String name;
-	private String address;
 	private String username;
 	private String password;
 	
-	public Customer(String name, String address, String username, String password) {
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+	
+	public User(String name, String username, String password) {
 		super();
 		this.name = name;
-		this.address = address;
 		this.username = username;
 		this.password = password;
-	}
-
-	@Override
-	public String toString() {
-		return "Customer [name=" + name + ", address=" + address + ", username=" + username + ", password=" + password
-				+ "]";
 	}
 
 	public String getName() {
@@ -27,14 +30,6 @@ public class Customer {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
 	}
 
 	public String getUsername() {
@@ -52,4 +47,12 @@ public class Customer {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	@Override
+	public String toString() {
+		return "Customer [name=" + name + ", username=" + username + ", password=" + password + "]";
+	}
+	
+	
+	
 }

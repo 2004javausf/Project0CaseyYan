@@ -3,13 +3,13 @@ package com.revature.test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
-import com.revature.beans.Customer;
+import com.revature.beans.User;
 import com.revature.service.Transaction;
 
 class TestTransaction {
 	
-	Customer a = new Customer("ABCD12345", "Mikey", 200);
-	Customer b = new Customer("CBDA65123", "Steven", 150);
+	User a = new User("ABCD12345", "Mikey", 200);
+	User b = new User("CBDA65123", "Steven", 150);
 	
 	Transaction transaction = new Transaction();
 
