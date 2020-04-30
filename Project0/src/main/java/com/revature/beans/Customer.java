@@ -9,19 +9,19 @@ public class Customer implements Serializable {
 	 */
 	private static final long serialVersionUID = 5468406550368728941L;
 	private String name;
-	private String id;
-	private int balance;
+	private String username;
+	private String password;
 	
 	public Customer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public Customer(String name, String id, int balance) {
+	
+	public Customer(String name, String username, String password) {
 		super();
 		this.name = name;
-		this.id = id;
-		this.balance = balance;
+		this.username = username;
+		this.password = password;
 	}
 
 	public String getName() {
@@ -32,31 +32,27 @@ public class Customer implements Serializable {
 		this.name = name;
 	}
 
-	public String getId() {
-		return id;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
-	public int getBalance() {
-		return balance;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setBalance(int balance) {
-		this.balance = balance;
+	public void setPassword(String password) {
+		this.password = password;
 	}
-	
 
 	@Override
 	public String toString() {
-		return "Customer [name=" + name + ", id=" + id + ", balance=" + balance + "]";
+		return "Customer [name=" + name + ", username=" + username + ", password=" + password + "]";
 	}
-
 	
 	
 	
-	
-
 }
