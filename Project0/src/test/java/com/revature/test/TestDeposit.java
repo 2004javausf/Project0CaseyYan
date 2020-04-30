@@ -9,8 +9,7 @@ import com.revature.service.Deposit;
 
 class TestDeposit {
 	
-	Customer a = new Customer("ABCD12345", "Mikey", 200, 50);
-	Customer b = new Customer("CBDA65123", "Steven", 150, 100);
+	Customer a = new Customer("ABCD12345", "Mikey", 200);
 	Deposit deposit = new Deposit();
 
 	@Test

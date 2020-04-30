@@ -11,19 +11,17 @@ public class Customer implements Serializable {
 	private String name;
 	private String id;
 	private int balance;
-	private int amount;
 	
 	public Customer() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Customer(String name, String id, int balance, int amount) {
+	public Customer(String name, String id, int balance) {
 		super();
 		this.name = name;
 		this.id = id;
 		this.balance = balance;
-		this.amount = amount;
 	}
 
 	public String getName() {
@@ -49,18 +47,11 @@ public class Customer implements Serializable {
 	public void setBalance(int balance) {
 		this.balance = balance;
 	}
-
-	public int getAmount() {
-		return amount;
-	}
-
-	public void setAmount(int amount) {
-		this.amount = amount;
-	}
+	
 
 	@Override
 	public String toString() {
-		return "Customer [name=" + name + ", id=" + id + ", balance=" + balance + ", amount=" + amount + "]";
+		return "Customer [name=" + name + ", id=" + id + ", balance=" + balance + "]";
 	}
 
 	

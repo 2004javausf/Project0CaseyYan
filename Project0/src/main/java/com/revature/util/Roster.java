@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.revature.beans.Customer;
+import com.revature.menu.Menu;
 
 public class Roster {
 	
@@ -17,6 +18,7 @@ public class Roster {
 			}
 		}
 				System.out.println("Customer Not Found");
+				Menu.startMenu();
 				return null;
 	}
 

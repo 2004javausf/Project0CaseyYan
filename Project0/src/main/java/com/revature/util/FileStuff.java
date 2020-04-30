@@ -1,6 +1,5 @@
 package com.revature.util;
 
-
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -15,11 +14,12 @@ import com.revature.beans.Customer;
 public class FileStuff {
 	public static final String customerFile= "customerList.txt";
 	//write method
-//	public static void writeWarriorFile(String fileName, ArrayList<?> a, Class c) {
-	public static void writeCustomerFile(List<Customer> a) {
+	public static List<Customer> customerList = new ArrayList<Customer>();
+
+	public static void writeCustomerFile() {
 		try {
 			ObjectOutputStream objectOut = new ObjectOutputStream (new FileOutputStream(customerFile));
-			objectOut.writeObject(a);
+			objectOut.writeObject(customerList);
 			objectOut.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -28,6 +28,28 @@ public class FileStuff {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+	}
+	
+	//read method
+	@SuppressWarnings("unchecked")
+	public static void readCustomerFile() {
+		try {
+			ObjectInputStream objectIn = new ObjectInputStream(new FileInputStream(customerFile));
+			Roster.customerList = (ArrayList<Customer>) objectIn.readObject();
+			objectIn.close();
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		
 	}
 }
