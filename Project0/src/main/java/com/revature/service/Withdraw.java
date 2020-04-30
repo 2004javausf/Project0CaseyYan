@@ -18,7 +18,7 @@ public class Withdraw {
         input2 += amount;
 		int firstBalance = a.getBalance();
 		a.setBalance(firstBalance - amount);
-		FileStuff.writeCustomerFile();
+		FileStuff.writeCustomerFile(Roster.customerList);
 	}
 
 	public int getAmount2() {

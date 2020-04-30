@@ -13,7 +13,7 @@ public class Driver {
 		Customer tidus = new Customer("Tidus", "REVATURE0001", 500);
 		FileStuff.customerList.add(auron);
 		FileStuff.customerList.add(tidus);
-		FileStuff.writeCustomerFile();
+		//FileStuff.writeCustomerFile(null);
 		System.out.println(Roster.customerList.toString());
 		FileStuff.readCustomerFile();
 		System.out.println(Roster.customerList.toString());

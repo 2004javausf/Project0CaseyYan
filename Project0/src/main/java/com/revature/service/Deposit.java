@@ -18,7 +18,7 @@ public class Deposit {
         input1 += amount;
 		int firstBalance = a.getBalance();
 		a.setBalance(firstBalance + amount);
-		FileStuff.writeCustomerFile();
+		FileStuff.writeCustomerFile(Roster.customerList);
 	}	
 	
     public int getAmount1() {

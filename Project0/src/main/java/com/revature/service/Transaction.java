@@ -20,7 +20,7 @@ public class Transaction {
 		int secondBalance = b.getBalance();
 		a.setBalance(firstBalance - amount);
 		b.setBalance(secondBalance + amount);
-		FileStuff.writeCustomerFile();
+		FileStuff.writeCustomerFile(Roster.customerList);
 	}
 	
 	public int getAmount3() {

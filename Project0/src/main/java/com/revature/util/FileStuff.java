@@ -16,10 +16,10 @@ public class FileStuff {
 	//write method
 	public static List<Customer> customerList = new ArrayList<Customer>();
 
-	public static void writeCustomerFile() {
+	public static void writeCustomerFile(List<Customer> a) {
 		try {
 			ObjectOutputStream objectOut = new ObjectOutputStream (new FileOutputStream(customerFile));
-			objectOut.writeObject(customerList);
+			objectOut.writeObject(a);
 			objectOut.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
