@@ -151,7 +151,7 @@ public class AdminMenu {
 					break;
 					
 				default:
-					System.out.println("Please make a option from 1-4.");
+					System.out.println("Please select an option from 1-7.");
 					break;
 				}
 			} while (o == 7);
