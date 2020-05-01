@@ -2,6 +2,7 @@ package com.revature.menu;
 
 import java.util.Scanner;
 
+import com.revature.beans.Customer;
 import com.revature.service.AdminLogin;
 import com.revature.service.ApproveApplication;
 import com.revature.service.DenyApplication;
@@ -11,12 +12,15 @@ import com.revature.service.ShowApplications;
 import com.revature.service.ShowExistAccount;
 import com.revature.service.Transaction;
 import com.revature.service.Withdraw;
+import com.revature.util.Roster;
+import com.revature.beans.;
 
 public class AdminMenu {
 //	o	Approving/denying accounts
 //	o	withdrawing, depositing, transferring from all accounts
 //	o	canceling accounts
 	static Scanner scan = new Scanner(System.in);
+	Customer a= Roster.findCustomerById(first);
 	
 	public static void adminMenu() {
 		ShowApplications shapp = new ShowApplications();
@@ -65,10 +69,14 @@ public class AdminMenu {
 					ShowExistAccount.showAcc();
 					break;
 				case 3:
+					Scanner sc1 = new Scanner (System.in);
+					System.out.println("Enter the ID you withdraw from: ");
+					String second = sc1.nextLine();
+					Customer b = Roster.findCustomerById(second);
+					System.out.println("Find the correct Customer ID!");
 					System.out.println("Thanks for using our services. ");
 					System.out.println("\n");
 					System.out.println("=======================================================================================================");
-					Menu.serviceMenu();
 					break;
 				case 4:
 					System.out.println("Thanks for using our services. ");
