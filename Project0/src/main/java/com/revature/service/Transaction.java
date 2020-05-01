@@ -2,7 +2,7 @@ package com.revature.service;
 
 import java.util.Scanner;
 
-import com.revature.beans.User;
+import com.revature.beans.Customer;
 import com.revature.util.FileStuff;
 import com.revature.util.Roster;
 
@@ -10,11 +10,12 @@ public class Transaction {
 	
 	private static int input3;
 	
-	public static void trans(User a, User b) {
+	public static void trans(Customer a, Customer b) {
 		//a is going to transfer to b
 		System.out.println("Please input your transfer amount: ");
 		Scanner sc = new Scanner(System.in);
 		int amount = sc.nextInt();
+		sc.close();
         input3 += amount;
 		int firstBalance = a.getBalance();
 		int secondBalance = b.getBalance();
