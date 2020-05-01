@@ -1,5 +1,6 @@
 package com.revature.util;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -12,14 +13,11 @@ import java.util.List;
 import com.revature.beans.User;
 
 public class FileStuff {
-	public static final String customerFile= "customerList.txt";
-	//write method
-	public static List<User> customerList = new ArrayList<User>();
-
-	public static void writeCustomerFile(List<User> a) {
+	
+	public static void writeFile(ArrayList writeMe, File itWillBeWritten) {
 		try {
-			ObjectOutputStream objectOut = new ObjectOutputStream (new FileOutputStream(customerFile));
-			objectOut.writeObject(a);
+			ObjectOutputStream objectOut = new ObjectOutputStream (new FileOutputStream(itWillBeWritten));
+			objectOut.writeObject(writeMe);
 			objectOut.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -33,10 +31,10 @@ public class FileStuff {
 	
 	//read method
 	@SuppressWarnings("unchecked")
-	public static void readCustomerFile() {
+	public static ArrayList readCustomerFile(File readMe, ArrayList fillMe) {
 		try {
-			ObjectInputStream objectIn = new ObjectInputStream(new FileInputStream(customerFile));
-			Roster.customerList = (ArrayList<User>) objectIn.readObject();
+			ObjectInputStream objectIn = new ObjectInputStream(new FileInputStream(readMe));
+			fillMe = (ArrayList<User>) objectIn.readObject();
 			objectIn.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -48,6 +46,7 @@ public class FileStuff {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return fillMe;
 		
 		
 		
