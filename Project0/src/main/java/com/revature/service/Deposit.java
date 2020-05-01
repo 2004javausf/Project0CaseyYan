@@ -2,29 +2,18 @@ package com.revature.service;
 
 import java.util.Scanner;
 
-import com.revature.beans.Customer;
-import com.revature.util.FileStuff;
-import com.revature.util.Roster;
+import com.revature.beans.Account;
 
 public class Deposit {
 	
-	private static int input1;
-	
-	public static void depo(Customer a) {
+	public static void depo(Account a) {
 		//a is going to deposit
-		System.out.println("Please input your deposite amount: ");
+		System.out.println("This account currently has $" + a.getBalance());
+		System.out.println("Please input your deposit amount: ");
 		Scanner sc = new Scanner(System.in);
-		int amount = sc.nextInt();
+		double amount = sc.nextDouble();
 		sc.close();
-        input1 += amount;
-		int firstBalance = a.getBalance();
-		a.setBalance(firstBalance + amount);
-		FileStuff.writeCustomerFile(Roster.customerList);
-
+		a.setBalance(a.getBalance() + amount);
 	}	
 	
-    public int getAmount1() {
-		return input1;
-   }
-
 }

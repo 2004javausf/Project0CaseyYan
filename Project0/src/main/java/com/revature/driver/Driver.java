@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import com.bank.driver.StartMenu;
 import com.revature.beans.Account;
 import com.revature.beans.User;
-import com.revature.menu.Menu;
 import com.revature.util.FileStuff;
 
 public class Driver {

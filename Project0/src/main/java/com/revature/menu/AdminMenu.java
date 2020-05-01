@@ -2,19 +2,15 @@ package com.revature.menu;
 
 import java.util.Scanner;
 
-import com.revature.beans.Admin;
-import com.revature.beans.Customer;
 import com.revature.service.AdminLogin;
 import com.revature.service.ApproveApplication;
 import com.revature.service.DenyApplication;
 import com.revature.service.Deposit;
-import com.revature.service.Employee;
 import com.revature.service.EmployeeLogin;
 import com.revature.service.ShowApplications;
 import com.revature.service.ShowExistAccount;
 import com.revature.service.Transaction;
 import com.revature.service.Withdraw;
-import com.revature.util.Roster;
 
 public class AdminMenu {
 //	o	Approving/denying accounts
