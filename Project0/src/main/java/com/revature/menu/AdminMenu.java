@@ -1,48 +1,27 @@
 package com.revature.menu;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-<<<<<<< HEAD
-import com.revature.beans.Customer;
-=======
+
 import com.revature.beans.Account;
 import com.revature.beans.User;
->>>>>>> 6afc140257aa509e194df39086cbbdaf26e25473
-import com.revature.service.AdminLogin;
-import com.revature.service.ApproveApplication;
-import com.revature.service.CancelAccount;
-import com.revature.service.DenyApplication;
 import com.revature.service.Deposit;
-import com.revature.service.EmployeeLogin;
-import com.revature.service.ShowApplications;
-import com.revature.service.ShowExistAccount;
 import com.revature.service.Transaction;
 import com.revature.service.Withdraw;
-import com.revature.util.Roster;
-import com.revature.beans.;
+import com.revature.util.FileStuff;
 
 public class AdminMenu {
 //	o	Approving/denying accounts
 //	o	withdrawing, depositing, transferring from all accounts
 //	o	canceling accounts
 	static Scanner scan = new Scanner(System.in);
-	Customer a= Roster.findCustomerById(first);
 	
 	public static void adminMenu(ArrayList<String> accountType, ArrayList<User> user, ArrayList<Account> account,
 			int index) {
-		ShowApplications shapp = new ShowApplications();
-		AdminLogin aLogin = new AdminLogin();
-		ApproveApplication approve = new ApproveApplication();
-		DenyApplication deny = new DenyApplication();
-		ShowExistAccount showaccount = new ShowExistAccount();
 		
-			System.out.println("Enter Admin username.");
-			String username = scan.nextLine();
-			System.out.println("Enter Admin password");
-			String password = scan.nextLine();
 			int o = scan.nextInt();
-			AdminLogin.aLogin(username, password);
 			do {
 				System.out.println("Please make a option:");
 				System.out.println("1: Approve/Deny Application");
@@ -50,89 +29,117 @@ public class AdminMenu {
 				System.out.println("3: Withdraw from an account");
 				System.out.println("4: Deposit from an account");
 				System.out.println("5: Transfer from an account");
-				System.out.println("6: cancel an acount");
+				System.out.println("6: Cancel an acount");
 				System.out.println("7: Exit");
 				o = scan.nextInt();
 				switch(o) {
 				case 1:
-					Employee.showApplications();
-					System.out.println("Y for Approve" + "n/N for Deny");
-					Scanner sc = new Scanner(System.in);
-					String input = sc.nextLine();
-					if(input.equals("Y")) {
-						System.out.println("Enter username to approve");
-						username = sc.nextLine();
-						a.approveApplication(username);
-						System.out.println("The Account has been approved");
-						break;
-					} else if(input.equals("N")) {
-						System.out.println("Enter username to deny");
-						username = sc.nextLine();
-						a.denyApplication(username);
-						System.out.println("The Account has been denied.");
-						break;
+					
+					ArrayList<User> pendingUser = new ArrayList<User>();
+					ArrayList<Account> pendingAccount = new ArrayList<Account>();
+					ArrayList<Integer> ind = new ArrayList<Integer>(); //holds the index for deletion purposes
+					ArrayList<Integer> toRemove = new ArrayList<Integer>();
+					for(int i = 0; i<account.size(); i++) {
+						if (account.get(i).isApproved() == false) {
+							pendingUser.add(user.get(i));
+							pendingAccount.add(account.get(i));
+							ind.add(i);
+						}
 					}
+					for(int i = 0; i<pendingAccount.size(); i++) {
+						System.out.println(pendingUser.get(i).getName() + " would like to apply for a new account.");
+						System.out.println("Y to Approve, N to Deny, anything else to postpone.");
+						Scanner sc = new Scanner(System.in);
+						String input = sc.nextLine();
+						if(input.equalsIgnoreCase("y")) {
+							System.out.println("The account has been approved.");
+							pendingAccount.get(i).setApproved(true);
+						}else if(input.equalsIgnoreCase("n")){
+							System.out.println("The account has been denied.");
+							toRemove.add(ind.get(i));
+						}else {
+							System.out.println("The account has been skipped.");
+						}
+					}
+					while(toRemove.size() != 0) {
+						int theCulling = ind.get(toRemove.size()-1);
+						user.remove(theCulling);
+						accountType.remove(theCulling);
+						account.remove(theCulling);
+						toRemove.remove(toRemove.size()-1);
+					}
+					FileStuff.writeFile(accountType, new File ("AccountTypeFile.txt"));
+					FileStuff.writeFile(user, new File("UserFile.txt"));
+					FileStuff.writeFile(account, new File("AccountFile.txt"));
+					
+					break;
+					
 				
 				case 2:
-					ShowExistAccount.showAcc();
+					for(int i = 0; i<user.size(); i++) { // list every customer in the bank 
+						if(accountType.get(i).equals("employee")) {
+							System.out.println(i+":" +user.get(i).getName() + " has a username of " + user.get(i).getUsername() + " and has an account that has a balance of $" + account.get(i).getBalance() + ". Has the account been approved? " + account.get(i).isApproved());
+						}
+					}
 					break;
 					
 				case 3:
 					Scanner sc1 = new Scanner (System.in);
-					System.out.println("Enter the ID you withdraw from: ");
-					String withdraw = sc1.nextLine();
-					Customer a = Roster.findCustomerById(withdraw);
-					System.out.println("Find the correct Customer ID!");
-					Withdraw.widr(a);
-					Withdraw w = new Withdraw();
-					int amount2 = w.getAmount2();
-					System.out.println("The deposit amounts are: "+ Math.abs(amount2));
-					System.out.println("The Customer current balances are: "+ a.getBalance());
+					System.out.println("Enter the index of the account you want to withdraw from: ");
+					int withdraw = sc1.nextInt();
+					Withdraw.widr(account.get(withdraw));
+					System.out.println("Account Withdrawn. New balance: $"+ account.get(withdraw).getBalance());
 					System.out.println("\n");
 					System.out.println("=======================================================================================================");
+					FileStuff.writeFile(account, new File("AccountFile.txt"));
+					sc1.close();
 					break;
 					
 				case 4:
 					Scanner sc2 = new Scanner (System.in);
-					System.out.println("Enter the ID you deposit to: ");
-					String deposit = sc2.nextLine();
-					Customer b = Roster.findCustomerById(deposit);
-					System.out.println("Find the correct Customer ID!");
-					Deposit.depo(b);
-					Deposit d = new Deposit();
-					int amount1 = d.getAmount1();
-					System.out.println("The deposit amounts are: "+ Math.abs(amount1));
-					System.out.println("The Customer current balances are: "+ a.getBalance());
+					System.out.println("Enter the index of the account you want to deposit to: ");
+					int deposit = sc2.nextInt();
+					Deposit.depo(account.get(deposit));
+					System.out.println("Account Deposited. New balance: $"+ account.get(deposit).getBalance());
 					System.out.println("\n");
 					System.out.println("=======================================================================================================");
-					System.out.println("=======================================================================================================");
+					FileStuff.writeFile(account, new File("AccountFile.txt"));
+					sc2.close();
 					break;
 					
 				case 5:
 					Scanner sc3 = new Scanner (System.in);
-					System.out.println("Enter the ID you transfer from: ");
-					String transfrom = sc3.nextLine();
-					Customer c = Roster.findCustomerById(transfrom);
-					System.out.println("Find the correct Customer ID!");
+					System.out.println("Enter the index of the account you want to transfer from: ");
+					int transFrom = sc3.nextInt();
 					
-					Scanner sc4 = new Scanner (System.in);
-					System.out.println("Enter the ID you transfer to: ");
-					String transto = sc4.nextLine();
-					Customer e = Roster.findCustomerById(transto);
-					System.out.println("Find the correct Customer ID!");
+					System.out.println("Enter the index of the account you want to transfer to: ");
+					int transTo = sc3.nextInt();
 					
-					Transaction.trans(a, b);
-					Transaction t = new Transaction();
-					int amount3 = t.getAmount3();
-					System.out.println(a.getName()+" just transfered " + amount3 + " to Customer "+b.getName());
-					System.out.println(a.getName()+" 's balance is now " + a.getBalance());
-					System.out.println(b.getName()+" 's balance is now " + b.getBalance());
+					Transaction.trans(account.get(transFrom), account.get(transTo));
+					System.out.println(user.get(transFrom).getName()+"'s balance is now $" + account.get(transFrom).getBalance());
+					System.out.println(user.get(transTo).getName()+"'s balance is now $" + account.get(transTo).getBalance());
 					System.out.println("=======================================================================================================");
+					FileStuff.writeFile(account, new File("AccountFile.txt"));
+					sc3.close();
 					break;
 					
 				case 6:
-					CancelAccount.cancel(a);
-					System.out.println("The Customer's account has been canceled. ");
+					System.out.println("Please enter index of account to be cancelled.");
+					Scanner s4 = new Scanner (System.in);
+					int killIt = s4.nextInt();
+					s4.close();
+					if(killIt < 0 || killIt > account.size()) {
+						System.out.println("Invalid input.");
+					}else {
+						System.out.println("The Customer's account has been canceled.");
+						accountType.remove(killIt);
+						user.remove(killIt);
+						account.remove(killIt);
+						FileStuff.writeFile(accountType, new File ("AccountTypeFile.txt"));
+						FileStuff.writeFile(user, new File("UserFile.txt"));
+						FileStuff.writeFile(account, new File("AccountFile.txt"));
+					}
+
 					System.out.println("\n");
 					System.out.println("=======================================================================================================");
 					break;

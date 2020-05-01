@@ -6,14 +6,6 @@ import java.util.Scanner;
 
 import com.revature.beans.Account;
 import com.revature.beans.User;
-import com.revature.service.ApproveApplication;
-import com.revature.service.DenyApplication;
-import com.revature.service.Deposit;
-import com.revature.service.EmployeeLogin;
-import com.revature.service.ShowApplications;
-import com.revature.service.ShowExistAccount;
-import com.revature.service.Transaction;
-import com.revature.service.Withdraw;
 import com.revature.util.FileStuff;
 
 public class EmployeeMenu {
@@ -27,11 +19,6 @@ public class EmployeeMenu {
 	public static void employMenu(ArrayList<String> accountType, ArrayList<User> user, ArrayList<Account> account,
 			int index) {
 	
-		ShowApplications shapp = new ShowApplications();
-		EmployeeLogin eLogin = new EmployeeLogin();
-		ApproveApplication approve = new ApproveApplication();
-		DenyApplication deny = new DenyApplication();
-		ShowExistAccount showaccount = new ShowExistAccount();
 		
 	int o = scan.nextInt();
 	
@@ -68,6 +55,7 @@ public class EmployeeMenu {
 				}else {
 					System.out.println("The account has been skipped.");
 				}
+				sc.close();
 			}
 			while(toRemove.size() != 0) {
 				int theCulling = ind.get(toRemove.size()-1);
