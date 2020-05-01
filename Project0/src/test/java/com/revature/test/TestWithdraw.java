@@ -4,26 +4,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import com.revature.beans.User;
+import com.revature.beans.Account;
 import com.revature.service.Withdraw;
 
 class TestWithdraw {
 
-	User a = new User("ABCD12345", "Mikey", 200);
-	User b = new User("CBDA65123", "Steven", 150);
+	Account a = new Account(200, true);
+	Account b = new Account(150, true);
 	Withdraw withdraw = new Withdraw();
 
 	@Test
-	void withdrawTestA() {
+	void withdrawTestA() {//withdraw 50
 		  withdraw.widr(a);
 		  //expected, actual
           assertEquals(150, a.getBalance());
-	}
-	
-	@Test
-	void withdrawTestB() {
-		  withdraw.widr(b);
-		  //expected, actual
-          assertEquals(50, b.getBalance());
 	}
 }
