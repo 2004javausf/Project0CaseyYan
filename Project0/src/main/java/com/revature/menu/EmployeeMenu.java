@@ -2,7 +2,6 @@ package com.revature.menu;
 
 import java.util.Scanner;
 
-import com.revature.beans.Customer;
 import com.revature.service.ApproveApplication;
 import com.revature.service.DenyApplication;
 import com.revature.service.Deposit;
@@ -11,7 +10,6 @@ import com.revature.service.ShowApplications;
 import com.revature.service.ShowExistAccount;
 import com.revature.service.Transaction;
 import com.revature.service.Withdraw;
-import com.revature.util.Roster;
 
 public class EmployeeMenu {
 	
@@ -23,11 +21,11 @@ public class EmployeeMenu {
 	
 	public static void employMenu() {
 	
-		static ShowApplications shapp = new ShowApplications();
-		static EmployeeLogin eLogin = new EmployeeLogin();
-		static ApproveApplication approve = new ApproveApplication();
-		static DenyApplication deny = new DenyApplication();
-		static ShowExistAccount showaccount = new ShowExistAccount();
+		ShowApplications shapp = new ShowApplications();
+		EmployeeLogin eLogin = new EmployeeLogin();
+		ApproveApplication approve = new ApproveApplication();
+		DenyApplication deny = new DenyApplication();
+		ShowExistAccount showaccount = new ShowExistAccount();
 	
 	
 	System.out.println("Enter employee username.");

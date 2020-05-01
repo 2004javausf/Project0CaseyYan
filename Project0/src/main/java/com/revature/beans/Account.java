@@ -8,6 +8,7 @@ public class Account implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = -498284351838735069L;
+
 	private double balance;
 	private boolean approved;
 	
@@ -15,6 +16,10 @@ public class Account implements Serializable{
 		super();
 		this.balance = balance;
 		this.approved = approved;
+	}
+	public Account() {
+		balance = 0;
+		approved = false;
 	}
 
 	public double getBalance() {

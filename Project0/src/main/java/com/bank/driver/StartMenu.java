@@ -5,6 +5,7 @@ import java.util.Scanner;
 
 import com.revature.beans.Account;
 import com.revature.beans.User;
+import com.revature.util.FileStuff;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,56 +13,39 @@ import java.io.IOException;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 
-public class Driver {
+public class StartMenu {
 
-	public static void main(String[] args) {
+	public static void Menu(ArrayList<String> accountType, ArrayList<User> userObject, ArrayList<Account> accountObject, File accountTypeFile, File userFile, File accountFile) {
 
-		ArrayList<String> accountType = new ArrayList<String>(); // create 3 column table of infinite length (arrayList)
-		ArrayList<User> userObject = new ArrayList<User>();
-		ArrayList<Account> accountObject = new ArrayList<Account>();
-
-		File accountTypeFile = new File("AccountTypeFile.txt");
-		File userFile = new File("UserFile.txt");
-		File accountFile = new File("AccountFile.txt");
-
-		Scanner accountTypeReader;
-		try {
-			accountTypeReader = new Scanner(accountTypeFile);
-			while (accountTypeReader.hasNext()) { // Read in account types to table
-				accountType.add(accountTypeReader.next());
-			}
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
-		FileInputStream userReader;
-		try {
-			userReader = new FileInputStream(userFile);
-			ObjectInputStream userObjects = new ObjectInputStream(userReader);
-			while (userObjects.available() != 0) { // Read in user account objects to table
-				userObject.add((User) userObjects.readObject());
-
-			}
-			userReader.close();
-			userObjects.close();
-		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
-		FileInputStream accountReader;
-		try {
-			accountReader = new FileInputStream(accountFile);
-			ObjectInputStream accountObjects = new ObjectInputStream(accountReader);
-			while (accountObjects.available() != 0) {
-				accountObject.add((Account) accountObjects.readObject());
-			}
-			accountReader.close();
-			accountObjects.close();
-		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-
-		// closing readers
-
+		/*
+		 * ArrayList<String> accountType = new ArrayList<String>(); // create 3 column
+		 * table of infinite length (arrayList) ArrayList<User> userObject = new
+		 * ArrayList<User>(); ArrayList<Account> accountObject = new
+		 * ArrayList<Account>();
+		 * 
+		 * File accountTypeFile = new File("AccountTypeFile.txt"); File userFile = new
+		 * File("UserFile.txt"); File accountFile = new File("AccountFile.txt");
+		 */
+		/*
+		 * FileInputStream accountTypeReader; try { accountTypeReader = new
+		 * FileInputStream(accountTypeFile); ObjectInputStream accountTypeObjects = new
+		 * ObjectInputStream(accountTypeReader); accountType = (ArrayList<String>)
+		 * accountTypeObjects.readObject(); } catch (IOException |
+		 * ClassNotFoundException e) { e.printStackTrace(); } FileInputStream
+		 * userReader; try { userReader = new FileInputStream(userFile);
+		 * ObjectInputStream userObjects = new ObjectInputStream(userReader); userObject
+		 * = (ArrayList<User>) userObjects.readObject(); userReader.close();
+		 * userObjects.close(); } catch (IOException | ClassNotFoundException e) {
+		 * e.printStackTrace(); }
+		 * 
+		 * FileInputStream accountReader; try { accountReader = new
+		 * FileInputStream(accountFile); ObjectInputStream accountObjects = new
+		 * ObjectInputStream(accountReader); accountObject = (ArrayList<Account>)
+		 * accountObjects.readObject(); accountReader.close(); accountObjects.close(); }
+		 * catch (IOException | ClassNotFoundException e) { e.printStackTrace(); }
+		 */
+		
+		
 		Scanner userIn = new Scanner(System.in);
 		String input = null;
 		boolean doneRight = false;
@@ -124,33 +108,33 @@ public class Driver {
 								System.out.println("3: Admin Account");
 							}
 							input = userIn.next();
-							//check for valid input
+							// check for valid input
 							if (input.equals("1") && customer) {
 								doneRight = true;
 								employee = false;
 								admin = false;
-							}else if (input.equals("2") && employee) {
+							} else if (input.equals("2") && employee) {
 								doneRight = true;
 								customer = false;
 								admin = false;
-							}else if (input.equals("3") && admin) {
+							} else if (input.equals("3") && admin) {
 								doneRight = true;
 								customer = false;
 								employee = false;
-							}else {
+							} else {
 								System.out.println("Invalid input.");
 							}
 						}
 					}
-					//TODO add UI implementation
-					if(customer) {
-						//Run customer UI
-					}else if (employee) {
-						//Run employee UI
-					}else if (admin) {
-						//Run admin UI
+					// TODO add UI implementation
+					if (customer) {
+						// Run customer UI
+					} else if (employee) {
+						// Run employee UI
+					} else if (admin) {
+						// Run admin UI
 					}
-					
+
 				} else {
 					// TODO add multiple attempts
 					System.out.println("Invalid password. Try again");
@@ -160,8 +144,34 @@ public class Driver {
 
 		} else {
 			System.out.println("Please make an account");
-			//TODO make account creation
+			User newUser = new User();
+			System.out.println("What is your Name?");
+			newUser.setName(userIn.next());
+			System.out.println("What username would you like?");
+			newUser.setUsername(userIn.next());
+			Boolean duplicateUsername = false;
+			for (int i = 0; i < userObject.size(); i++) {
+				if (newUser.getName().equals(userObject.get(i).getUsername())) {// If username already exists
+					System.out.println("Username already exists. Please use another one.");
+					duplicateUsername = true;
+				}
+			}
+			if (duplicateUsername == false) {
+				System.out.println("What password would you like? No spaces");
+				newUser.setPassword(userIn.next());
+				System.out
+						.println("Thank you. New account created. Please wait 3-5 business days for account approval.");
+				// TODO login with account
+				accountType.add("customer");
+				userObject.add(newUser);
+				accountObject.add(new Account());
+				FileStuff.writeFile(accountType, accountTypeFile);
+				FileStuff.writeFile(userObject, userFile);
+				FileStuff.writeFile(accountObject, accountFile);
+				
+			}
 		}
+		userIn.close();//close scanner
 	}
 
 	private static boolean CheckPassword(ArrayList<User> userObject, String input, int userIndex) { // check index
@@ -181,8 +191,6 @@ public class Driver {
 
 			if (input.equalsIgnoreCase((userObject.get(i)).getUsername())) {
 				return i;
-			} else {
-				i++;
 			}
 		}
 
