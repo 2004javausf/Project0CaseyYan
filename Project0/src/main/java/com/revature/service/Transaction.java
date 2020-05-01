@@ -2,32 +2,24 @@ package com.revature.service;
 
 import java.util.Scanner;
 
-import com.revature.beans.Customer;
-import com.revature.util.FileStuff;
-import com.revature.util.Roster;
+import com.revature.beans.Account;
 
 public class Transaction {
 	
-	private static int input3;
-	
-	public static void trans(Customer a, Customer b) {
+	public static void trans(Account a, Account b) {
 		//a is going to transfer to b
-		System.out.println("Please input your transfer amount: ");
+		System.out.println("Please input the amount you want to transfer: ");
 		Scanner sc = new Scanner(System.in);
-		int amount = sc.nextInt();
+		double amount = sc.nextDouble();
 		sc.close();
-        input3 += amount;
-		int firstBalance = a.getBalance();
-		int secondBalance = b.getBalance();
-		a.setBalance(firstBalance - amount);
-		b.setBalance(secondBalance + amount);
-		FileStuff.writeCustomerFile(Roster.customerList);
+		if(amount > a.getBalance()) {
+			System.out.println("Insufficient funds for transfer.");
+		}else {
+			a.setBalance(a.getBalance() - amount);
+			b.setBalance(b.getBalance() + amount);
+		}
 	}
 	
-	public int getAmount3() {
-		// TODO Auto-generated method stub
-		return input3;
-	}
 
 
 }

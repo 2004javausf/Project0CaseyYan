@@ -20,9 +20,9 @@ public class Driver {
 		File userFile = new File("UserFile.txt");
 		File accountFile = new File("AccountFile.txt");
 		
-		accountType = FileStuff.readCustomerFile(accountTypeFile, accountType);
-		userObject = FileStuff.readCustomerFile(userFile, userObject);
-		accountObject = FileStuff.readCustomerFile(accountFile, accountObject);
+		accountType = FileStuff.readFile(accountTypeFile, accountType);
+		userObject = FileStuff.readFile(userFile, userObject);
+		accountObject = FileStuff.readFile(accountFile, accountObject);
 		
 		User auron = new User("Auron", "REVATURE1234", "Dead");
 		User tidus = new User("Tidus", "REVATURE0001", "BetterThanDad");
