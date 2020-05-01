@@ -1,7 +1,10 @@
 package com.revature.menu;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.revature.beans.Account;
+import com.revature.beans.User;
 import com.revature.service.AdminLogin;
 import com.revature.service.ApproveApplication;
 import com.revature.service.DenyApplication;
@@ -18,7 +21,8 @@ public class AdminMenu {
 //	o	canceling accounts
 	static Scanner scan = new Scanner(System.in);
 	
-	public static void adminMenu() {
+	public static void adminMenu(ArrayList<String> accountType, ArrayList<User> user, ArrayList<Account> account,
+			int index) {
 		ShowApplications shapp = new ShowApplications();
 		AdminLogin aLogin = new AdminLogin();
 		ApproveApplication approve = new ApproveApplication();

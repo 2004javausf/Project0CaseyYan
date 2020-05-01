@@ -5,7 +5,9 @@ import java.util.Scanner;
 
 import com.revature.beans.Account;
 import com.revature.beans.User;
+import com.revature.menu.AdminMenu;
 import com.revature.menu.CustomerMenu;
+import com.revature.menu.EmployeeMenu;
 import com.revature.util.FileStuff;
 
 import java.io.File;
@@ -127,9 +129,9 @@ public class StartMenu {
 					if (customer) {
 						CustomerMenu.serviceMenu(accountType, userObject, accountObject, userIndex);
 					} else if (employee) {
-						// Run employee UI
+						EmployeeMenu.employMenu(accountType, userObject, accountObject, userIndex);
 					} else if (admin) {
-						// Run admin UI
+						AdminMenu.adminMenu(accountType, userObject, accountObject, userIndex);
 					}
 
 				} else {
