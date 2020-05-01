@@ -8,10 +8,6 @@ import com.revature.beans.User;
 import com.revature.util.FileStuff;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.FileInputStream;
-import java.io.ObjectInputStream;
 
 public class StartMenu {
 
@@ -174,7 +170,7 @@ public class StartMenu {
 		userIn.close();//close scanner
 	}
 
-	private static boolean CheckPassword(ArrayList<User> userObject, String input, int userIndex) { // check index
+	public static boolean CheckPassword(ArrayList<User> userObject, String input, int userIndex) { // check index
 																									// returned under
 																									// username for
 																									// correct password
@@ -185,7 +181,7 @@ public class StartMenu {
 		return false;
 	}
 
-	private static int SearchUsername(ArrayList<User> userObject, String input) { // check for username and return if it
+	public static int SearchUsername(ArrayList<User> userObject, String input) { // check for username and return if it
 																					// exists
 		for (int i = 0; i < userObject.size(); i++) {
 

@@ -31,7 +31,7 @@ public class FileStuff {
 	
 	//read method
 	@SuppressWarnings("unchecked")
-	public static ArrayList readCustomerFile(File readMe, ArrayList fillMe) {
+	public static ArrayList readFile(File readMe, ArrayList fillMe) {
 		try {
 			ObjectInputStream objectIn = new ObjectInputStream(new FileInputStream(readMe));
 			fillMe = (ArrayList<User>) objectIn.readObject();
